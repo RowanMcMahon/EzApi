@@ -1,6 +1,8 @@
 FROM php:7.4-fpm-alpine
 
-ADD ./.docker/php/www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./.docker/php/www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./composer.json /var/www/composer.json
+COPY ./composer.lock /var/www/composer.lock
 
 RUN addgroup -g 1000 ezapi && adduser -G ezapi -g ezapi -s /bin/sh -D ezapi
 
