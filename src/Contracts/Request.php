@@ -1,6 +1,6 @@
 <?php
 
-namespace Contracts;
+namespace EzApi\Contracts;
 
 use GuzzleHttp\Client;
 
@@ -14,11 +14,22 @@ class Request
     protected $headers;
     protected $disableSSL = false;
 
-    public function __construct($host, $endpoint, $method, $data, $headers = null, $scheme = null)
+    protected $validSslOptions = [
+        null,
+        'http',
+        'https',
+    ];
+
+    public function __construct($method, $host, $endpoint = '', $data = [], $headers = null, $scheme = null)
     {
-        $this->host = trim($host, '/');
-        $this->endpoint = ltrim($endpoint, '/');
+        if (!in_array($scheme, $this->validSslOptions))
+        {
+            throw new \InvalidArgumentException('Invalid SSL option, must be either "https or "http"');
+        }
+
         $this->method = $method;
+        $this->host = trim($host, '/');
+        $this->endpoint = trim($endpoint, '/');
         $this->data = $data;
         $this->headers = $headers;
         $this->scheme = $scheme ?? 'https';
@@ -26,8 +37,8 @@ class Request
 
     public function getUrl()
     {
-        $url = $this->scheme . '://' . $this->host . '/' . $this->endpoint;
-        if ($this->method === 'GET')
+        $url = $this->scheme . '://' . $this->host . ($this->endpoint !== '' ? '/' . $this->endpoint : $this->endpoint);
+        if ($this->method === 'GET' && !empty($this->data))
         {
             $url .= '?' . http_build_query($this->data);
         }
@@ -40,6 +51,19 @@ class Request
         $this->disableSSL = true;
     }
 
+    function isJsonRequest()
+    {
+        foreach ($this->headers as $header => $value)
+        {
+            if (strtolower($header) == 'content-type' && $value == 'application/json')
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function send()
     {
         $client = new Client();
@@ -48,14 +72,21 @@ class Request
             'verify' => !$this->disableSSL
         ];
 
-        if ($this->method !== 'GET')
-        {
-            $body['form_params'] = $this->data;
-        }
-
         if (isset($this->headers) && !empty($this->headers))
         {
             $body['headers'] = $this->headers;
+        }
+
+        if ($this->method !== 'GET')
+        {
+            if ($this->isJsonRequest())
+            {
+                $body['json'] = $this->data;
+            }
+            else
+            {
+                $body['form_params'] = $this->data;
+            }
         }
 
         $res = $client->request(
@@ -67,7 +98,7 @@ class Request
         try
         {
             $contents = $res->getBody()->getContents();
-            return json_decode($contents, true);
+            return json_decode($contents, true) ?? $contents;
         }
         catch (\Throwable $th)
         {

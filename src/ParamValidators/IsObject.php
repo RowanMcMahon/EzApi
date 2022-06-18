@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\EzApi\ParamValidators;
+namespace EzApi\ParamValidators;
 
-use Contracts\ParamValidator;
+use EzApi\Contracts\ParamValidator;
 
 class IsObject extends ParamValidator
 {

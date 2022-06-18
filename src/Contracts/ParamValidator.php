@@ -1,6 +1,6 @@
 <?php
 
-namespace Contracts;
+namespace EzApi\Contracts;
 
 abstract class ParamValidator
 {

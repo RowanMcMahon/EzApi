@@ -24,9 +24,9 @@ class ComposerStaticInitc280237fa4185860390d64c6b73f73ac
         array (
             'Webmozart\\Assert\\' => 17,
         ),
-        'R' => 
+        'T' => 
         array (
-            'Rowanmcmahon\\Ezapi\\' => 19,
+            'Tests\\' => 6,
         ),
         'P' => 
         array (
@@ -40,6 +40,10 @@ class ComposerStaticInitc280237fa4185860390d64c6b73f73ac
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+        ),
+        'E' => 
+        array (
+            'EzApi\\' => 6,
         ),
         'D' => 
         array (
@@ -59,9 +63,9 @@ class ComposerStaticInitc280237fa4185860390d64c6b73f73ac
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
-        'Rowanmcmahon\\Ezapi\\' => 
+        'Tests\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/tests',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -91,6 +95,10 @@ class ComposerStaticInitc280237fa4185860390d64c6b73f73ac
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'EzApi\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

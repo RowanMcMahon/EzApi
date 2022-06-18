@@ -1,16 +1,16 @@
 <?php
 
-namespace Contracts;
+namespace EzApi\Contracts;
 
-use Contracts\Request;
-use ParamValidators\IsBool;
-use ParamValidators\Length;
-use ParamValidators\Accepts;
-use ParamValidators\IsArray;
-use ParamValidators\IsObject;
-use ParamValidators\IsString;
-use ParamValidators\IsInteger;
-use ParamValidators\IsNumeric;
+use Ezapi\Contracts\Request;
+use Ezapi\ParamValidators\IsBool;
+use Ezapi\ParamValidators\Length;
+use Ezapi\ParamValidators\Accepts;
+use Ezapi\ParamValidators\IsArray;
+use Ezapi\ParamValidators\IsObject;
+use Ezapi\ParamValidators\IsString;
+use Ezapi\ParamValidators\IsInteger;
+use Ezapi\ParamValidators\IsNumeric;
 
 abstract class Action
 {
@@ -176,9 +176,9 @@ abstract class Action
     public function request($method, $host, $endpoint, $data = [], $headers = [])
     {
         $request = new Request(
+            $method,
             $host,
             $endpoint,
-            $method,
             $data,
             $headers
         );

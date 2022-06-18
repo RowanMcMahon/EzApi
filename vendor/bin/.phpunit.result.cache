@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"Test::testPushAndPop":0.001}}
+{"version":1,"defects":{"RequestTest::test_allows_trailing_slashes_on_host":4},"times":{"Test::testPushAndPop":0.001,"RequestTest::test_allows_trailing_slashes_on_host":0.001}}

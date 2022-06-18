@@ -9,7 +9,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Rowanmcmahon\\Ezapi\\": "src/"
+            "EzApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     },
     "authors": [
