@@ -15,8 +15,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: "Bring up docker"
+          command: "docker-compose up -d"
+      - run: 
+          name: "Run unit tests"
+          command: "docker-compose exec php ./vendor/bin/phpunit"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
