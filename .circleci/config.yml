@@ -20,6 +20,9 @@ jobs:
           name: "Bring up docker"
           command: "docker-compose up -d"
       - run:
+          name: "Test ls"
+          command: "docker-compose exec php ls"
+      - run:
           name: "Composer install"
           command: "docker-compose exec php composer install"
       - run: 
