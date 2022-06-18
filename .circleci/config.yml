@@ -21,7 +21,7 @@ jobs:
           command: "docker-compose up -d"
       - run:
           name: "Test ls"
-          command: "docker-compose exec php ls"
+          command: "docker-compose exec php cat /var/www/html/composer.json"
       - run:
           name: "Composer install"
           command: "docker-compose exec php composer install"
