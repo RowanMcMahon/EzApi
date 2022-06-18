@@ -3,6 +3,10 @@ version: 2.1
 jobs:
   test:
     machine: true
+    filters:
+      branches:
+        only:
+          - main
     steps:
       - checkout
       - run:
