@@ -1,0 +1,21 @@
+{
+    "name": "rowanmcmahon/ezapi",
+    "description": "A general purpose framework for setting up API services",
+    "type": "library",
+    "require": {
+        "phpunit/phpunit": "^9.5",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rowanmcmahon\\Ezapi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rowan McMahon"
+        }
+    ],
+    "minimum-stability": "stable"
+}

@@ -1,0 +1,16 @@
+version: '3'
+
+networks:
+  ezapi:
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: ./.docker/php.dockerfile
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "9000:9000"
+    networks:
+      - ezapi
